@@ -1,0 +1,12 @@
+<div class="slide">
+  <div class="slide__title">
+    <h2><%= slide.name %></h2>
+    <div class="slide__actions">
+      <%= button_to 'Edit', edit_my_presentation_slide_path(slide), class: "button button--primary" %>
+    </div>
+  </div>
+
+  <div class="slide__body">
+    <%= simple_format slide.body %>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+.controls {
+  display: flex;
+  gap: var(--space-s);
+  align-items: center;
+  margin-top: var(--space-m);
+  margin-bottom: var(--space-l);
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: var(--shadow-small);
+
+
+
+  &__breadcrumb {
+    padding: var(--space-s) var(--space-m);    
+  }
+
+  &__prev {
+    margin-left: auto;
+    padding: var(--space-s) var(--space-m);
+  }
+  &__next {
+    padding: var(--space-s) var(--space-m);
+  }
+
+}

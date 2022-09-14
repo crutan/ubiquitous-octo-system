@@ -1,0 +1,24 @@
+<main class="container container__slideshow">
+  <h1><%= @presentation.name %></h1>
+
+  <div class="with-sidebar">
+  <div>
+    <!-- sidebar -->
+    <ul>
+      <% @presentation.slides.each do |slide| %>
+        <%= render "slide_preview", slide: slide %>
+      <% end %>
+    </ul>
+
+  </div>
+    <div>
+      <!-- non-sidebar -->
+      <%= turbo_frame_tag @presentation do %>
+        <%= render @presentation.current_slide %>
+      <% end %>
+      <%= render "controls", presentation: @presentation %>
+    </div>
+  </div>
+
+  
+</main>

@@ -1,0 +1,12 @@
+<div>
+  <div>
+    <%= presentation.name %>
+  </div>
+  <div>
+    <%= presentation.description %>
+  </div>
+  <div>
+    <%= presentation.slides.count %> Slides 
+  </div>
+  <%= link_to 'Edit', my_presentation_path(presentation) %>
+</div>
