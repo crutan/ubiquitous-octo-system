@@ -1,0 +1,8 @@
+<main class="container">
+  <h1><%= @slide.name %></h1>
+  <%= link_to sanitize("&larr; Back to Presentation"), my_presentation_path(@slide.presentation) %>
+
+  <%= turbo_frame_tag @slide.presentation, "slide_viewer" do %>
+    <%= render @slide %>
+  <% end %>
+</main>

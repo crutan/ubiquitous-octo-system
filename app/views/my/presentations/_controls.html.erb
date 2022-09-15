@@ -1,6 +1,6 @@
 <div class="controls">
   <div class="controls__breadcrumb">
-    <%= presentation.current_slide.position %> / <%= presentation.slides.count %>
+    <%= slide.position %> / <%= presentation.slides.count %>
   </div>
   <div class="controls__prev">
     <%= simple_form_for presentation, url: my_presentation_path(presentation) do |f| %>

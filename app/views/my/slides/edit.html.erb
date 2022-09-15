@@ -1,0 +1,11 @@
+<main class="container">
+
+<%= turbo_frame_tag nested_dom_id(@slide.presentation, "slide_viewer") do %>
+  <%= simple_form_for @slide, url: my_presentation_slide_path(@slide.presentation, @slide) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :body %>
+
+    <%= f.submit "Save" %>
+  <% end %>
+<% end %>
+</main>

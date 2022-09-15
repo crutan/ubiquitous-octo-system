@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: First Slide
+  presentation: first_presentation
+  position: 1
+  body: This is the first slide
+
+two:
+  name: Second Slide
+  presentation: first_presentation
+  position: 2
+  body: This is the second slide
+
+three:
+  name: Last Slide
+  presentation: first_presentation
+  position: 3
+  body: This is the last slide

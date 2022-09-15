@@ -8,5 +8,6 @@
   <div>
     <%= presentation.slides.count %> Slides 
   </div>
-  <%= link_to 'Edit', my_presentation_path(presentation) %>
+  <%= link_to 'Edit', my_presentation_path(presentation), class: "button button--light" %>
+  <%= link_to 'View', my_presentation_path(presentation), class: "button button--primary" %>
 </div>

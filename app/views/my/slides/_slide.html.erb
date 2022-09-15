@@ -2,11 +2,33 @@
   <div class="slide__title">
     <h2><%= slide.name %></h2>
     <div class="slide__actions">
-      <%= button_to 'Edit', edit_my_presentation_slide_path(slide), class: "button button--primary" %>
+      <% if slide.persisted? %>
+        <%= link_to 'Edit', edit_my_presentation_slide_path(slide.presentation, slide), class: "button button--primary" %>
+      <% else %>
+        <%= link_to 'Add', new_my_presentation_slide_path(slide.presentation), class: 'button button--primary' %>
+      <% end %>  
     </div>
   </div>
 
   <div class="slide__body">
     <%= simple_format slide.body %>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="controls__breadcrumb">
+    <%= slide.position %> / <%= slide.presentation.slides.count %>
+  </div>
+  <div class="controls__prev">
+    <%= link_to sanitize("&larr;"), 
+        my_presentation_slide_path(slide.presentation, previous_slide(slide)), 
+        data: { turbo_frame: nested_dom_id(slide.presentation, "slide_viewer") },
+        class: "button button--light" %>
+  </div>
+  <div class="controls__next">
+      <%= link_to sanitize("&rarr;"), 
+        my_presentation_slide_path(slide.presentation, next_slide(slide)), 
+        data: { turbo_frame: nested_dom_id(slide.presentation, "slide_viewer") },
+        class: "button button--light" %>
   </div>
 </div>

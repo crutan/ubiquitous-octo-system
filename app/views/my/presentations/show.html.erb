@@ -1,22 +1,22 @@
 <main class="container container__slideshow">
   <h1><%= @presentation.name %></h1>
+  <%= link_to sanitize("&larr; Back to Presentations"), my_presentations_path %>
 
   <div class="with-sidebar">
   <div>
     <!-- sidebar -->
     <ul>
       <% @presentation.slides.each do |slide| %>
-        <%= render "slide_preview", slide: slide %>
+        <%= render "slide_preview", slide: slide, presentation: @presentation %>
       <% end %>
     </ul>
 
   </div>
     <div>
       <!-- non-sidebar -->
-      <%= turbo_frame_tag @presentation do %>
-        <%= render @presentation.current_slide %>
+      <%= turbo_frame_tag nested_dom_id(@presentation, "slide_viewer") do %>
+          <%= render @presentation.current_slide %>
       <% end %>
-      <%= render "controls", presentation: @presentation %>
     </div>
   </div>
 

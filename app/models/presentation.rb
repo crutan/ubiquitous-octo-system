@@ -3,6 +3,7 @@ class Presentation < ApplicationRecord
   belongs_to :viewing_slide, class_name: 'Slide', optional: true
   
   def current_slide
+    return slides.build if slides.empty?
     return slides.first unless viewing_slide
 
     viewing_slide

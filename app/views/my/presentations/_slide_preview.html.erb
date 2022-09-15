@@ -1,5 +1,5 @@
 <%= turbo_frame_tag slide, "preview" do %>
   <li class="slide slide__preview">
-    <%= slide.name %>
+    <%= link_to slide.name, my_presentation_slide_path(presentation, slide), data: { turbo_frame: nested_dom_id(presentation, "slide_viewer") } %>
   </li>
 <% end %>

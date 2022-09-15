@@ -10,5 +10,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root "presentations#index"
+  root "my/presentations#index"
 end
