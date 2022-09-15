@@ -1,8 +1,11 @@
-<div class="slide">
+<%= turbo_frame_tag nested_dom_id(slide.presentation, "slide_viewer") do %>
+
+<div class="slide" id="<%= dom_id(slide) %>">
   <div class="slide__title">
     <h2><%= slide.name %></h2>
     <div class="slide__actions">
       <% if slide.persisted? %>
+        <%= button_to heroicon('trash'), my_presentation_slide_path(slide.presentation, slide), method: :delete, class: "button button--light" %>
         <%= link_to 'Edit', edit_my_presentation_slide_path(slide.presentation, slide), class: "button button--primary" %>
       <% else %>
         <%= link_to 'Add', new_my_presentation_slide_path(slide.presentation), class: 'button button--primary' %>
@@ -20,15 +23,22 @@
     <%= slide.position %> / <%= slide.presentation.slides.count %>
   </div>
   <div class="controls__prev">
-    <%= link_to sanitize("&larr;"), 
+    <%= link_to heroicon('arrow-left'), 
         my_presentation_slide_path(slide.presentation, previous_slide(slide)), 
         data: { turbo_frame: nested_dom_id(slide.presentation, "slide_viewer") },
-        class: "button button--light" %>
+        class: "button button--light", title: 'Previous Slide' %>
+  </div>
+  <div class="controls__add">
+    <%= link_to heroicon('document-plus'), 
+        new_my_presentation_slide_path(slide.presentation, slide: { position: slide.position + 1 }),
+        data: { turbo_frame: nested_dom_id(slide.presentation, "slide_viewer") },
+        class: "button button--light", title: 'Add Slide After' %>
   </div>
   <div class="controls__next">
-      <%= link_to sanitize("&rarr;"), 
+      <%= link_to heroicon('arrow-right'), 
         my_presentation_slide_path(slide.presentation, next_slide(slide)), 
         data: { turbo_frame: nested_dom_id(slide.presentation, "slide_viewer") },
-        class: "button button--light" %>
+        class: "button button--light", title: 'Next Slide' %>
   </div>
 </div>
+<% end %>

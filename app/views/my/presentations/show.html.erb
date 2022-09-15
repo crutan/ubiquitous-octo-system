@@ -6,17 +6,26 @@
   <div>
     <!-- sidebar -->
     <ul>
-      <% @presentation.slides.each do |slide| %>
-        <%= render "slide_preview", slide: slide, presentation: @presentation %>
+
+      <%= turbo_frame_tag nested_dom_id(@presentation, "slide_preview"), data: { controller: "drag" } do %>
+        <% @presentation.slides.each do |slide| %>
+          <%= render "slide_preview", slide: slide, presentation: @presentation %>
+        <% end %>
       <% end %>
     </ul>
-
+    <div class="controls">
+      <div class="controls__add">
+         <%= link_to heroicon('document-plus'), 
+          new_my_presentation_slide_path(@presentation, slide: { position: @presentation.slides.last.position + 1 } ),
+          data: { turbo_frame: nested_dom_id(@presentation, "slide_viewer") },
+          class: "button button--light button--icon",
+          title: "Add Slide" %>
+      </div>
+    </div>
   </div>
     <div>
       <!-- non-sidebar -->
-      <%= turbo_frame_tag nested_dom_id(@presentation, "slide_viewer") do %>
           <%= render @presentation.current_slide %>
-      <% end %>
     </div>
   </div>
 

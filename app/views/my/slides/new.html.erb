@@ -1,12 +1,13 @@
 <main class="container">
 
   <%= turbo_frame_tag nested_dom_id(@slide.presentation, "slide_viewer") do %>
-    <h2>Edit Slide</h2>
-    <%= simple_form_for @slide, url: my_presentation_slide_path(@slide.presentation, @slide) do |f| %>
+    <h2>New Slide</h2>
+    <%= simple_form_for @slide, url: my_presentation_slides_path(@slide.presentation) do |f| %>
       <%= form_error_notification @slide %>
       
       <%= f.input :name %>
       <%= f.input :body %>
+      <%= f.hidden_field :position, value: @slide.position %>
 
       <%= f.submit "Save", class: "button button--light" %>
     <% end %>

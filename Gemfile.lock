@@ -97,6 +97,8 @@ GEM
     foreman (0.87.2)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    heroicon (1.0.0)
+      rails (>= 5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     io-console (0.5.11)
@@ -241,6 +243,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   foreman
+  heroicon
   jbuilder
   jsbundling-rails
   pg (~> 1.1)

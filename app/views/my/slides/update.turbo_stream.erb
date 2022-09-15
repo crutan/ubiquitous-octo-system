@@ -1,0 +1,6 @@
+<%= turbo_stream.replace nested_dom_id(@presentation, "slide_viewer") do %>
+  <%= render @slide %>
+<% end %>
+<%= turbo_stream.replace nested_dom_id(@slide, "preview") do %>
+  <%= render "my/presentations/slide_preview", slide: @slide, presentation: @presentation %>
+<% end %>

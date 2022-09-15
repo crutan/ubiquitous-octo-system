@@ -1,5 +1,6 @@
-<%= turbo_frame_tag slide, "preview" do %>
+<%= turbo_frame_tag nested_dom_id(slide, "preview"), data: { drag_url: move_my_presentation_slide_path(presentation, slide), drag_active: dom_id(slide) } do %>
   <li class="slide slide__preview">
+    <span class="handle"><%= heroicon "bars-3" %></span>
     <%= link_to slide.name, my_presentation_slide_path(presentation, slide), data: { turbo_frame: nested_dom_id(presentation, "slide_viewer") } %>
   </li>
 <% end %>

@@ -6,9 +6,14 @@ Rails.application.routes.draw do
   #
   namespace :my do
     resources :presentations do
-      resources :slides
+      resources :slides do
+        member do
+          patch :move
+        end
+      end
     end
   end
 
   root "my/presentations#index"
+
 end
