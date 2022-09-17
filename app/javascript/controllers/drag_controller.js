@@ -3,7 +3,6 @@ import Sortable from "sortablejs"
 
 export default class extends Controller {
   connect() {
-    console.log("Connected");
     this.sortable = Sortable.create(this.element, {
       sort: true,
       handle: '.handle',
@@ -13,7 +12,6 @@ export default class extends Controller {
   }
 
   async save(event) {
-    console.log("Item id: ", event.item.id)
     let data = new FormData()
     data.append("slide[position]", event.newIndex + 1)
 
@@ -25,7 +23,7 @@ export default class extends Controller {
       body: data,
     });
 
-    // Click the slide preview link if the slide is visible
+    // Click the slide preview link if the slide is visible - this will fix slide numbering and prev/next weirdness
     if (document.querySelector('div.slide#'+event.item.dataset.dragActive)) {
       document.querySelector('#'+event.item.id+' li a').click();
     }

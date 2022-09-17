@@ -1,13 +1,13 @@
-<%= turbo_stream.replace nested_dom_id(@presentation, "slide_viewer") do %>
+<%= turbo_stream.replace nested_dom_id(@slideshow, "slide_viewer") do %>
   <%= render @slide %>
 <% end %>
 <% if @slide.first? %>
-  <%= turbo_stream.prepend nested_dom_id(@presentation, "slide_preview") do %>
-    <%= render "my/presentations/slide_preview", slide: @slide, presentation: @presentation %>
+  <%= turbo_stream.prepend nested_dom_id(@slideshow, "slide_preview") do %>
+    <%= render "my/slideshows/slide_preview", slide: @slide, slideshow: @slideshow %>
   <% end %>
 <% else %>
   <%= turbo_stream.after nested_dom_id(previous_slide(@slide), "preview") do %>
-    <%= render "my/presentations/slide_preview", slide: @slide, presentation: @presentation %>
+    <%= render "my/slideshows/slide_preview", slide: @slide, slideshow: @slideshow %>
   <% end %>
 <% end %>
   

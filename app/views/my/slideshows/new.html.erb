@@ -1,0 +1,10 @@
+<main class="container">
+  <h2>New Slide Show</h2>
+  <%= simple_form_for @slideshow, url: my_slideshows_path do |f| %>
+    <%= form_error_notification @slideshow %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.submit "Save", class: "button button--light" %>
+  <% end %>
+
+</main>

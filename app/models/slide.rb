@@ -1,4 +1,6 @@
 class Slide < ApplicationRecord
-  belongs_to :presentation
-  acts_as_list scope: :presentation
+  belongs_to :slideshow
+  acts_as_list scope: :slideshow
+  has_rich_text :body
+
 end

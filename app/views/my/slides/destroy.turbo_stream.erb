@@ -1,5 +1,5 @@
 <%= turbo_stream.remove nested_dom_id(@slide, "preview") %>
-<%= turbo_stream.replace nested_dom_id(@presentation, "slide_viewer") do %>
+<%= turbo_stream.replace nested_dom_id(@slideshow, "slide_viewer") do %>
   <% if @slide.first? %>
     <%= render next_slide(@slide) %>
   <% else %>

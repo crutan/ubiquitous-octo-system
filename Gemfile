@@ -49,10 +49,18 @@ gem "bootsnap", require: false
 gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
+# Manage slides in a slideshow
 gem 'acts_as_list'
+
+# Build forms with less code
 gem 'simple_form'
+
+# User auth
+gem 'devise'
+
+# Nice icons w/ helpers
 gem 'heroicon'
 
 group :development, :test do

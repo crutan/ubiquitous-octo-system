@@ -2,18 +2,12 @@ module My
   class PresentationsController < ApplicationController
     before_action :set_presentation, only: [:show, :edit, :update, :destroy]
     
-    def index
-      @presentations = Presentation.all
-    end
-
     def show
     end
 
-    def edit
-    end
-
     def new
-      @presentation = Presentation.new
+      @presentation = current_user.presentations.new
+      @presentation.slideshow_id = params[:slideshow][:id] if params[:slideshow]
     end
 
     def create
@@ -41,7 +35,7 @@ module My
     private
     
     def set_presentation
-      @presentation = Presentation.find(params[:id])
+      @presentation = current_user.presentations.find(params[:id])
     end
 
     def presentation_params

@@ -1,0 +1,15 @@
+<header class="navbar">
+  <%= heroicon 'paper-airplane', options: { class: 'navbar__brand' } %>
+  <div class="navbar__brand">
+    <a href="/">Turbo Slides</a>
+  </div>
+  <% if user_signed_in? %>
+
+    <div class="navbar__name">
+      <%= link_to current_user.name, edit_user_registration_path(current_user) %>
+    </div>
+    <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "button button--light" %>
+  <% else %>
+    <%= link_to "Sign In", new_user_session_path, class: "button button--light navbar__right" %>
+  <% end %>
+</header>

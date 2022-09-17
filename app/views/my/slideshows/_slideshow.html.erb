@@ -1,0 +1,13 @@
+<div>
+  <div>
+    <%= slideshow.name %>
+  </div>
+  <div>
+    <%= slideshow.description %>
+  </div>
+  <div>
+    <%= slideshow.slides.count %> Slides 
+  </div>
+  <%= link_to 'Edit', my_slideshow_path(slideshow), class: "button button--light" %>
+  <%= link_to 'View', my_slideshow_path(slideshow), class: "button button--primary" %>
+</div>

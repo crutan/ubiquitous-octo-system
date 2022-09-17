@@ -1,0 +1,10 @@
+<main class="container">
+  <%= simple_form_for @presentation, url: my_presentations_path do |f|%>
+    <%= f.association :slideshow %>
+    <%= f.input :name %>
+
+    <%= f.submit "Begin Presentation", class: "button button--primary" %>
+    <%= link_to "Cancel", my_slideshow_path(@presentation.slideshow), class: "button button--secondary" %>
+  <% end %>
+
+</main>

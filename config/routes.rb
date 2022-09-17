@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
   #
   namespace :my do
-    resources :presentations do
+    resources :presentations, only: [:new, :show, :update, :create, :destroy]
+    resources :slideshows do
       resources :slides do
         member do
           patch :move
@@ -14,6 +16,6 @@ Rails.application.routes.draw do
     end
   end
 
-  root "my/presentations#index"
+  root "my/slideshows#index"
 
 end

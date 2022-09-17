@@ -1,0 +1,53 @@
+<main class="container container__slideshow">
+  <h1><%= @slideshow.name %></h1>
+  <%= link_to sanitize("&larr; Back to slideshows"), my_slideshows_path %>
+
+  <div class="with-sidebar">
+  <div class="slide_previews">
+    <div class="controls">
+      <%= link_to heroicon('document-plus'), 
+        new_my_slideshow_slide_path(@slideshow, slide: { position: 1 } ),
+        data: { turbo_frame: nested_dom_id(@slideshow, "slide_viewer") },
+        class: "button button--primary button--icon",
+        title: "Add Slide at Beginning" %>
+      <%= link_to heroicon('video-camera'), 
+        new_my_presentation_path(slideshow: { id: @slideshow.id }),
+        data: { turbo_frame: nested_dom_id(@slideshow, "slide_viewer") },
+        class: "button button--secondary button--icon",
+        title: "Present",
+        data: { turbo_frame: "_top" } %>
+    </div>
+    <ul>
+
+      <%= turbo_frame_tag nested_dom_id(@slideshow, "slide_preview"), data: { controller: "drag" } do %>
+        <% @slideshow.slides.each do |slide| %>
+          <%= render "slide_preview", slide: slide, slideshow: @slideshow %>
+        <% end %>
+      <% end %>
+    </ul>
+    <div class="controls">
+      <%= link_to heroicon('document-plus'), 
+        new_my_slideshow_slide_path(@slideshow, slide: { position: @slideshow.slides.empty? ? 1 : @slideshow.slides.last.position + 1 } ),
+        data: { turbo_frame: nested_dom_id(@slideshow, "slide_viewer") },
+        class: "button button--primary button--icon",
+        title: "Add Slide at End" %>
+      <%= link_to heroicon('video-camera'), 
+        new_my_presentation_path(slideshow: { id: @slideshow.id }),
+        data: { turbo_frame: nested_dom_id(@slideshow, "slide_viewer") },
+        class: "button button--secondary button--icon",
+        title: "Present" %>
+      
+    </div>
+  </div>
+    <div>
+      <!-- non-sidebar -->
+        <% if @slideshow.slides.empty? %>
+          <%= render "my/slides/empty_state", slideshow: @slideshow %>
+        <% else %>
+          <%= render @slideshow.slides.first %>
+        <% end %>
+    </div>
+  </div>
+
+  
+</main>

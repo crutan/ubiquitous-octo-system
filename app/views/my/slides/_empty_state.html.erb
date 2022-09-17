@@ -1,7 +1,17 @@
-<div class="empty-state">
-  <p class="empty-state__text">
-    You don't have any quotes yet!
-  </p>
+<%= turbo_frame_tag nested_dom_id(slideshow, "slide_viewer") do %>
 
-  <%= link_to "Add Slide", new_my_presentation_slide_path(presentation), class: "button button--primary" %>
+<div class="slide">
+  <div class="slide__title">
+    <h2>No Slides</h2>
+    <div class="slide__actions">
+      <%= link_to 'Add', new_my_slideshow_slide_path(slideshow), class: 'button button--primary' %>
+    </div>
+
+  </div>
+  <div class="slide__body">
+    <div>You have no slides in this slideshow.  Please create some slides.</div>
+    <%= link_to "Add Slide", new_my_slideshow_slide_path(slideshow), class: "button button--primary" %>
+  </div>
 </div>
+
+<% end %>
