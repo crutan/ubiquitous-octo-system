@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_19_175554) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_21_135024) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_175554) do
     t.boolean "presenter", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
     t.index ["presentation_id"], name: "index_attendees_on_presentation_id"
     t.index ["user_id"], name: "index_attendees_on_user_id"
   end
@@ -80,6 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_175554) do
     t.string "name", null: false
     t.bigint "user_id"
     t.bigint "slide_id"
+    t.boolean "active", default: true
     t.index ["slide_id"], name: "index_presentations_on_slide_id"
     t.index ["slideshow_id"], name: "index_presentations_on_slideshow_id"
     t.index ["user_id"], name: "index_presentations_on_user_id"

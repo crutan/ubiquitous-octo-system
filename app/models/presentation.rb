@@ -5,6 +5,7 @@ class Presentation < ApplicationRecord
   belongs_to :user
   has_many :chat_messages, -> {order(created_at: :asc)}, dependent: :destroy
 
+  scope :active, -> { where(active: true) }
 
   after_create :add_presenter_as_attendee
   after_update_commit :render_current_slide

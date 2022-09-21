@@ -12,7 +12,7 @@
     <%= presentation.slideshow.slides.count %> Slides 
   </div>
   <% if current_user.is_attending?(presentation) %>
-    <%= link_to 'View', my_slideshow_path(slideshow), class: "button button--primary" %>
+    <%= link_to 'View', presentation_path(presentation), class: "button button--primary" %>
   <% else %>
     <%= button_to 'Attend', presentation_attendees_path(presentation) %>
   <% end %>

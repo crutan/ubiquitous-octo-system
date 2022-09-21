@@ -24,8 +24,18 @@ module My
     def update
       if @presentation.update(presentation_params)
         respond_to do |format|
-          format.html { redirect_to my_presentation_path(@presentation), notice: 'Presentation updated successfully' }
-          format.turbo_stream
+          format.html { 
+            if @presentation.active?
+              redirect_to my_presentation_path(@presentation), notice: 'Presentation updated successfully' 
+            else
+              redirect_to root_path
+            end
+          }
+          format.turbo_stream {
+            if !@presentation.active?
+              redirect_to root_path
+            end
+          }
         end
       else
         render :edit, status: :unprocessable_entity
@@ -44,7 +54,7 @@ module My
     end
 
     def presentation_params
-      params.require(:presentation).permit(:name, :slideshow_id, :slide_id)
+      params.require(:presentation).permit(:name, :slideshow_id, :slide_id, :active)
     end
   end
 end

@@ -1,0 +1,13 @@
+.grid {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-l);
+
+  &__cell {
+    flex: 1;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-large);
+    padding: var(--space-l);
+  }
+}

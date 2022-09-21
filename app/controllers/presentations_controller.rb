@@ -18,6 +18,7 @@ class PresentationsController < ApplicationController
 
   def set_attendee
     @attendee = @presentation.attendees.where(user_id: current_user.id).first_or_create
+    @attendee.activate!
   end
 
 end

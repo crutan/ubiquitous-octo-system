@@ -1,18 +1,30 @@
 <main class="container container__presentation">
-  <h1><%= @presentation.name %> - <%= @presentation.slideshow.name %></h1>
-
-  <%= turbo_stream_from @presentation, "current_slide" %>
-  <%= turbo_stream_from @presentation, "chat_messages" %>
-
-  <div class="with-sidebar">
-    <div class="chat">
-      <%= render("/presentations/chat_box", presentation: @presentation) %>
-
-      <%= render("chat_form", presentation: @presentation) %>
+  <div class="presentation">
+    <div class="header">
+      <h1><%= @presentation.name %> - <%= @presentation.slideshow.name %></h1>
+      <div class="actions">
+          <%= simple_form_for @presentation, url: my_presentation_path(@presentation), data: { turbo_confirm: "Are you sure?", turbo_frame: "_top" } do |f| %>
+          <%= f.hidden_field :active, value: false %>
+          <button type="submit">
+            <%= heroicon 'x-mark' %>
+          </button>
+        <% end %>
+      </div>
     </div>
-    <div>
-      <%= render("current_slide", presentation: @presentation, slide: @presentation.slide) %>
-      
+
+    <%= turbo_stream_from @presentation, "current_slide" %>
+    <%= turbo_stream_from @presentation, "chat_messages" %>
+
+    <div class="with-sidebar">
+      <div class="chat">
+        <%= render("/presentations/chat_box", presentation: @presentation) %>
+
+        <%= render("chat_form", presentation: @presentation) %>
+      </div>
+      <div>
+        <%= render("current_slide", presentation: @presentation, slide: @presentation.slide) %>
+        
+      </div>
     </div>
   </div>
 </main>
