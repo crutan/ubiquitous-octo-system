@@ -4,14 +4,17 @@
 
 import { application } from "./application"
 
+import ClipboardController from "./clipboard_controller"
+application.register("clipboard", ClipboardController)
+
 import DragController from "./drag_controller"
 application.register("drag", DragController)
+
+import KeepScrolledController from "./keep_scrolled_controller"
+application.register("keep-scrolled", KeepScrolledController)
 
 import RemovalsController from "./removals_controller"
 application.register("removals", RemovalsController)
 
 import ResetOnSubmitController from "./reset_on_submit_controller"
 application.register("reset-on-submit", ResetOnSubmitController)
-
-import KeepScrolledController from "./keep_scrolled_controller"
-application.register("keep-scrolled", KeepScrolledController)

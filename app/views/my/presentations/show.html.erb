@@ -3,9 +3,12 @@
     <div class="header">
       <h1><%= @presentation.name %> - <%= @presentation.slideshow.name %></h1>
       <div class="actions">
+          <button  class="button button--light" data-controller="clipboard" data-action="clipboard#copy" data-clipboard-url-value="<%= presentation_url(@presentation) %>" title="Copy Presentation URL" >
+            <%= heroicon 'document-plus' %>
+          </button>
           <%= simple_form_for @presentation, url: my_presentation_path(@presentation), data: { turbo_confirm: "Are you sure?", turbo_frame: "_top" } do |f| %>
           <%= f.hidden_field :active, value: false %>
-          <button type="submit">
+          <button type="submit" class="button button--light">
             <%= heroicon 'x-mark' %>
           </button>
         <% end %>
