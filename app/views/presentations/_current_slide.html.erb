@@ -1,4 +1,4 @@
-<%= turbo_frame_tag nested_dom_id("current_slide") do %>
+  <%= turbo_frame_tag "current_slide", class: "animate__animated animate__fadeIn animate__faster", data: { animate_out: 'animate__fadeOut' } do %>
   <div class="slide">
     <div class="slide__title">
     </div>
