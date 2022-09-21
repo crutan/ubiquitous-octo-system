@@ -3,7 +3,7 @@ class AttendeesController < ApplicationController
   before_action :set_attendee, only: [:update, :destroy]
 
   def create
-    @attendee = @presentation.attendees.build(user: current_user, name: current_user.name)
+    @attendee = @presentation.attendees.build(user: current_user, name: current_user.name, active: true)
     if @attendee.save
       redirect_to presentation_path(@presentation)
     else

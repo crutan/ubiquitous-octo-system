@@ -7,6 +7,8 @@ class Attendee < ApplicationRecord
   after_update_commit :left_chat_message
   
   def activate!
+    return if active?
+    
     update!(active: true)
     joined_chat_message
   end
