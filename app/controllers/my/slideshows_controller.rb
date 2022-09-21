@@ -17,7 +17,7 @@ module My
     end
 
     def create
-      @slideshow = Slideshow.new(slideshow_params)
+      @slideshow = Slideshow.new(slideshow_params.merge(user_id: current_user.id))
       if @slideshow.save
         redirect_to my_slideshow_path(@slideshow), notice: 'Slideshow created successfully'
       else
