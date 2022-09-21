@@ -14,6 +14,9 @@
     <div class="controls__breadcrumb">
       <%= @presentation.slide.position %> / <%= @presentation.slideshow.slides.count %>
     </div>
+    <div class="controls_notes">
+      <%= @presentation.slide.notes %>
+    </div>
     <div class="controls__prev">
       <%= simple_form_for @presentation, url: my_presentation_path(@presentation) do |f| %>
         <%= f.hidden_field :slide_id, value: previous_slide(@presentation.slide).id %>
@@ -22,6 +25,7 @@
         </button>
       <% end %>
     </div>
+
     <div class="controls__next">
       <%= simple_form_for @presentation, url: my_presentation_path(@presentation) do |f| %>
         <%= f.hidden_field :slide_id, value: next_slide(@presentation.slide).id %>

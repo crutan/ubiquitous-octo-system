@@ -22,6 +22,9 @@
   <div class="controls__breadcrumb">
     <%= slide.position %> / <%= slide.slideshow.slides.count %>
   </div>
+  <div class="controls__notes">
+    <%= slide.notes %>
+  </div>
   <% if slide.slideshow.slides.any? %>
   <div class="controls__prev">
     <%= link_to heroicon('arrow-left'), 

@@ -10,4 +10,8 @@ class User < ApplicationRecord
   def is_attending?(presentation)
     presentation.attendees.exists?(user_id: id)
   end
+
+  def is_presenting?(presentation)
+    presentation.attendees.exists?(user_id: id, presenter: true)
+  end
 end
