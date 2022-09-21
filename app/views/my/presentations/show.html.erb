@@ -1,0 +1,19 @@
+<main class="container container__presentation">
+  <h1><%= @presentation.name %> - <%= @presentation.slideshow.name %></h1>
+
+  <%= turbo_stream_from @presentation, "current_slide" %>
+  <%= turbo_stream_from @presentation, "chat_messages" %>
+
+  <div class="with-sidebar">
+    <div class="chat">
+      <%= render("/presentations/chat_box", presentation: @presentation) %>
+
+      <%= render("chat_form", presentation: @presentation) %>
+    </div>
+    <div>
+      <%= render("current_slide", presentation: @presentation, slide: @presentation.slide) %>
+      
+    </div>
+  </div>
+</main>
+        

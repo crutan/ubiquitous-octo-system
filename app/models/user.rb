@@ -6,4 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true
+
+  def is_attending?(presentation)
+    presentation.attendees.exists?(user_id: id)
+  end
 end

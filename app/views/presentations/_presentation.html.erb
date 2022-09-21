@@ -1,0 +1,19 @@
+<div>
+  <div>
+    <strong>Name: </strong><%= presentation.name %>
+  </div>
+  <div>
+    <strong>Presenter: </strong><%= presentation.user.name %>
+  </div>
+  <div>
+    <%= presentation.slideshow.description %>
+  </div>
+  <div>
+    <%= presentation.slideshow.slides.count %> Slides 
+  </div>
+  <% if current_user.is_attending?(presentation) %>
+    <%= link_to 'View', my_slideshow_path(slideshow), class: "button button--primary" %>
+  <% else %>
+    <%= button_to 'Attend', presentation_attendees_path(presentation) %>
+  <% end %>
+</div>

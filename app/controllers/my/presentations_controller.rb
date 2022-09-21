@@ -3,6 +3,7 @@ module My
     before_action :set_presentation, only: [:show, :edit, :update, :destroy]
     
     def show
+      @chat_message = @presentation.chat_messages.build(attendee: @presentation.attendees.find_by(user_id: current_user.id))
     end
 
     def new
@@ -11,7 +12,8 @@ module My
     end
 
     def create
-      @presentation.new(presentation_params)
+      @presentation = Presentation.new(presentation_params.merge(user: current_user))
+      @presentation.slide = @presentation.slideshow.slides.first
       if @presentation.save
         redirect_to my_presentation_path(@presentation), notice: 'Presentation created successfully'
       else
@@ -21,7 +23,10 @@ module My
 
     def update
       if @presentation.update(presentation_params)
-        redirect_to my_presentation_path(@presentation), notice: 'Presentation updated successfully'
+        respond_to do |format|
+          format.html { redirect_to my_presentation_path(@presentation), notice: 'Presentation updated successfully' }
+          format.turbo_stream
+        end
       else
         render :edit, status: :unprocessable_entity
       end
@@ -39,7 +44,7 @@ module My
     end
 
     def presentation_params
-      params.require(:presentation).permit(:name, :description, :viewing, :viewing_slide_id)
+      params.require(:presentation).permit(:name, :slideshow_id, :slide_id)
     end
   end
 end

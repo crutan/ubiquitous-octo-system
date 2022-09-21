@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_16_233250) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_19_175554) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,10 +56,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_233250) do
     t.bigint "user_id"
     t.bigint "presentation_id", null: false
     t.string "name", null: false
+    t.boolean "presenter", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["presentation_id"], name: "index_attendees_on_presentation_id"
     t.index ["user_id"], name: "index_attendees_on_user_id"
+  end
+
+  create_table "chat_messages", force: :cascade do |t|
+    t.bigint "attendee_id", null: false
+    t.bigint "presentation_id", null: false
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attendee_id"], name: "index_chat_messages_on_attendee_id"
+    t.index ["presentation_id"], name: "index_chat_messages_on_presentation_id"
   end
 
   create_table "presentations", force: :cascade do |t|
@@ -110,6 +121,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_233250) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "attendees", "presentations"
   add_foreign_key "attendees", "users"
+  add_foreign_key "chat_messages", "attendees"
+  add_foreign_key "chat_messages", "presentations"
   add_foreign_key "presentations", "slideshows"
   add_foreign_key "slides", "slideshows"
   add_foreign_key "slideshows", "users"

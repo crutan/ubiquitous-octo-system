@@ -1,5 +1,7 @@
 <main class="container">
   <%= simple_form_for @presentation, url: my_presentations_path do |f|%>
+    <%= form_error_notification(@presentation) %>
+    
     <%= f.association :slideshow %>
     <%= f.input :name %>
 

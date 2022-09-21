@@ -16,6 +16,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :presentations, only: [ :index, :show ] do
+    resources :chat_messages
+    resources :attendees, only: [ :create, :destroy ]
+  end
+
   root "my/slideshows#index"
 
 end

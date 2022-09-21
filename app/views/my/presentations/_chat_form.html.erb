@@ -1,0 +1,10 @@
+<div class="chat_form">
+<%= turbo_frame_tag nested_dom_id(presentation, "chat-form") do %>
+  <%= simple_form_for @chat_message, url: presentation_chat_messages_path(presentation), data: { controller: 'reset-on-submit', action: 'turbo:submit-end->reset-on-submit#reset' } do |f| %>
+    <%= f.input :text, placeholder: 'Send message', label: false %>
+
+    <%= f.submit "Send", class: "button button--primary" %>
+
+  <% end%>
+<% end%>
+</div>

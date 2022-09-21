@@ -1,0 +1,35 @@
+<%= turbo_frame_tag nested_dom_id(presentation, "current_slide") do %>
+  <div class="slide">
+    <div class="slide__title">
+      <h2><%= slide.name %></h2>
+    </div>
+
+    <div class="slide__body">
+      <%= slide.body %>
+    </div>
+  </div>
+
+
+  <div class="controls">
+    <div class="controls__breadcrumb">
+      <%= @presentation.slide.position %> / <%= @presentation.slideshow.slides.count %>
+    </div>
+    <div class="controls__prev">
+      <%= simple_form_for @presentation, url: my_presentation_path(@presentation) do |f| %>
+        <%= f.hidden_field :slide_id, value: previous_slide(@presentation.slide).id %>
+        <button type="submit">
+          <%= heroicon('arrow-left') %>
+        </button>
+      <% end %>
+    </div>
+    <div class="controls__next">
+      <%= simple_form_for @presentation, url: my_presentation_path(@presentation) do |f| %>
+        <%= f.hidden_field :slide_id, value: next_slide(@presentation.slide).id %>
+  <button type="submit">
+          <%= heroicon('arrow-right') %>
+        </button>   
+      <% end %>
+    </div>
+  </div>
+
+<% end %>

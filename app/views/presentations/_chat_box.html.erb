@@ -1,0 +1,10 @@
+  <h3>Chat</h3>
+
+<div class="chat_box" data-controller="keep-scrolled" data-keep-scrolled-container-value="chat_box" data-keep-scrolled-margin-value="-1">
+  <%= turbo_frame_tag "chat_messages" do %>
+    <% presentation.chat_messages.each do |chat_message| %>
+      <% next unless chat_message.persisted? %>
+      <%= render "/chat_messages/chat_message", chat_message: chat_message %>
+    <% end %>
+  <% end %>
+</div>

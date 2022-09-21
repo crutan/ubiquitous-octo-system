@@ -8,6 +8,13 @@
   @include media(tabletAndUp) {
     padding-right: var(--space-m);
     padding-left: var(--space-m);
-    max-width: 80rem;
+    max-width: 60rem;
+  }
+
+  &__slideshow, &__presentation {
+
+    @include media(tabletAndUp) {
+      max-width: 80rem;
+    }
   }
 }

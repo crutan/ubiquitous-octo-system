@@ -1,6 +1,5 @@
 module My
   class SlideshowsController < ApplicationController
-    before_action :authenticate_user!
     before_action :set_slideshow, only: [:show, :edit, :update, :destroy]
     
     def index

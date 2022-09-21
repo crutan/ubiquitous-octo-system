@@ -9,3 +9,9 @@ application.register("drag", DragController)
 
 import RemovalsController from "./removals_controller"
 application.register("removals", RemovalsController)
+
+import ResetOnSubmitController from "./reset_on_submit_controller"
+application.register("reset-on-submit", ResetOnSubmitController)
+
+import KeepScrolledController from "./keep_scrolled_controller"
+application.register("keep-scrolled", KeepScrolledController)
