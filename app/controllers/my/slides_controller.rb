@@ -1,23 +1,22 @@
+# frozen_string_literal: true
+
 module My
   class SlidesController < ApplicationController
     before_action :set_slideshow
-    before_action :set_slide, only: [:show, :edit, :update, :destroy, :move]
-    
+    before_action :set_slide, only: %i[show edit update destroy move]
 
     def index
       @slides = @slideshow.slides
     end
 
-    def show
-    end
+    def show; end
 
     def new
       @slide = @slideshow.slides.build
       @slide.position = params[:slide][:position] if params[:slide]
     end
 
-    def edit
-    end
+    def edit; end
 
     def update
       if @slide.update(slide_params)

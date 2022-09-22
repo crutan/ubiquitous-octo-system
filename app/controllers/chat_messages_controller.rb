@@ -1,17 +1,17 @@
+# frozen_string_literal: true
+
 class ChatMessagesController < ApplicationController
   before_action :set_presentation
   before_action :set_attendee
 
   def create
     @chat_message = @presentation.chat_messages.build(chat_message_params.merge(attendee: @attendee))
-    if @chat_message.save
-      respond_to do |format|
-        format.html
-        format.turbo_stream
-      end
+    @chat_message.save
+    respond_to do |format|
+      format.html
+      format.turbo_stream
     end
   end
-
 
   private
 

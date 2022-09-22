@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module My
   class PresentationsController < ApplicationController
-    before_action :set_presentation, only: [:show, :edit, :update, :destroy]
-    
+    before_action :set_presentation, only: %i[show edit update destroy]
+
     def show
       @chat_message = @presentation.chat_messages.build(attendee: @presentation.attendees.find_by(user_id: current_user.id))
     end
@@ -21,21 +23,17 @@ module My
       end
     end
 
-    def update
+    def update # rubocop:disable Metrics/MethodLength
       if @presentation.update(presentation_params)
         respond_to do |format|
-          format.html { 
-            if @presentation.active?
-              redirect_to my_presentation_path(@presentation), notice: 'Presentation updated successfully' 
-            else
-              redirect_to root_path
-            end
-          }
-          format.turbo_stream {
-            if !@presentation.active?
-              redirect_to root_path
-            end
-          }
+          format.html do
+            redirect_to root_path and return unless @presentation.active?
+
+            redirect_to my_presentation_path(@presentation), notice: 'Presentation updated successfully'
+          end
+          format.turbo_stream do
+            redirect_to root_path unless @presentation.active?
+          end
         end
       else
         render :edit, status: :unprocessable_entity
@@ -48,7 +46,7 @@ module My
     end
 
     private
-    
+
     def set_presentation
       @presentation = current_user.presentations.find(params[:id])
     end

@@ -1,0 +1,43 @@
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'bin/*'
+    - 'config/**/*'
+    - vendor/bundle/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Style/ConditionalAssignment:
+  Enabled: false
+
+Style/RaiseArgs:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: either
+
+Naming/VariableNumber:
+  Enabled: false
+
+
+Layout/LineLength:
+  Max: 175
+
+Lint/MissingSuper:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude: 
+    - spec/**/*
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"

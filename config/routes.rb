@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   #
   namespace :my do
-    resources :presentations, only: [:new, :show, :update, :create, :destroy]
+    resources :presentations, only: %i[new show update create destroy]
     resources :slideshows do
       resources :slides do
         member do
@@ -16,11 +16,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :presentations, only: [ :index, :show ] do
+  resources :presentations, only: %i[index show] do
     resources :chat_messages
-    resources :attendees, only: [ :update, :create, :destroy ]
+    resources :attendees, only: %i[update create destroy]
   end
 
-  root "home#index"
-
+  root 'home#index'
 end

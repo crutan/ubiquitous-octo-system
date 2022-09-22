@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class AttendeesController < ApplicationController
   before_action :set_presentation
-  before_action :set_attendee, only: [:update, :destroy]
+  before_action :set_attendee, only: %i[update destroy]
 
   def create
     @attendee = @presentation.attendees.build(user: current_user, name: current_user.name, active: true)
@@ -26,7 +28,7 @@ class AttendeesController < ApplicationController
   end
 
   private
-  
+
   def attendee_params
     params.require(:attendee).permit(:name, :active)
   end

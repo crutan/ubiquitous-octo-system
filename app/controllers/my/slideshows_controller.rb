@@ -1,16 +1,16 @@
+# frozen_string_literal: true
+
 module My
   class SlideshowsController < ApplicationController
-    before_action :set_slideshow, only: [:show, :edit, :update, :destroy]
-    
+    before_action :set_slideshow, only: %i[show edit update destroy]
+
     def index
       @slideshows = current_user.slideshows
     end
 
-    def show
-    end
+    def show; end
 
-    def edit
-    end
+    def edit; end
 
     def new
       @slideshow = Slideshow.new
@@ -39,7 +39,7 @@ module My
     end
 
     private
-    
+
     def set_slideshow
       @slideshow = Slideshow.find(params[:id])
     end

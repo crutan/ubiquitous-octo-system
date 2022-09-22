@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateSlides < ActiveRecord::Migration[7.0]
   def change
     create_table :slides do |t|
@@ -8,6 +10,5 @@ class CreateSlides < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-
   end
 end

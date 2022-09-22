@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class PresentationsController < ApplicationController
-  before_action :set_presentation, only: [ :show, :update ]
-  before_action :set_attendee, only: [ :show ]
+  before_action :set_presentation, only: %i[show update]
+  before_action :set_attendee, only: [:show]
 
   def index
     @presentations = Presentation.all
@@ -20,5 +22,4 @@ class PresentationsController < ApplicationController
     @attendee = @presentation.attendees.where(user_id: current_user.id).first_or_create
     @attendee.activate!
   end
-
 end
