@@ -1,5 +1,4 @@
 .slide {
-  aspect-ratio: 16/9;
   border: var(--border);
   padding: var(--space-s);
 
@@ -15,7 +14,7 @@
   }
 
   &__actions {
-    display: flex;
+    display: flex;  
     flex: 0 0 auto;
     align-self: flex-start;
     gap: var(--space-xs);
@@ -35,12 +34,14 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    padding: 2rem;
   }
 
   &__body .trix-content h1:only-child {
     justify-self: center;
     align-self: center;
     margin: auto;
+    padding: 10rem;
   } 
 
   &__preview {
