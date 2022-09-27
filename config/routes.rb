@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   end
 
   resources :presentations, only: %i[index show] do
+    member do
+      get :archived
+    end
     resources :chat_messages
     resources :attendees, only: %i[update create destroy]
   end

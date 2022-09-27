@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class PresentationsController < ApplicationController
-  before_action :set_presentation, only: %i[show update]
+  before_action :set_presentation, only: %i[show update archived]
   before_action :set_attendee, only: [:show]
 
   def index
     @presentations = Presentation.all
   end
+
+  def archived; end
 
   def show
     @chat_message = @presentation.chat_messages.build(attendee: @attendee)

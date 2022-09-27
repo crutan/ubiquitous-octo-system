@@ -21,10 +21,6 @@ class Presentation < ApplicationRecord
   def render_current_slide
     return unless saved_change_to_slide_id?
 
-    (remove_slide, add_slide) = previous_changes['slide_id']
-    puts "Removing slide_id #{remove_slide}"
-    puts "Adding slide_id #{add_slide}"
-    # broadcast_replace_to([self, "current_slide"], partial: "/presentations/current_slide", locals: {presentation: self, slide: slide})
     broadcast_replace_to([self, 'current_slide'], target: 'current_slide', partial: 'presentations/current_slide', locals: { presentation: self, slide: slide })
   end
 end
