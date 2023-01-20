@@ -15,7 +15,7 @@
       <%= @presentation.slide.position %> / <%= @presentation.slideshow.slides.count %>
     </div>
     <div class="controls_notes">
-      <%= @presentation.slide.notes %>
+      <%= simple_format(@presentation.slide.notes) %>
     </div>
     <div class="controls__prev">
       <%= simple_form_for @presentation, url: my_presentation_path(@presentation) do |f| %>

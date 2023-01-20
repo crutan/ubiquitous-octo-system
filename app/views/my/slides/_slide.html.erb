@@ -23,7 +23,7 @@
     <%= slide.position %> / <%= slide.slideshow.slides.count %>
   </div>
   <div class="controls__notes">
-    <%= slide.notes %>
+    <%= simple_format(slide.notes) %>
   </div>
   <% if slide.slideshow.slides.any? %>
   <div class="controls__prev">
